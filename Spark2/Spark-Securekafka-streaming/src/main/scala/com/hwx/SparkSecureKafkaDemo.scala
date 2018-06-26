@@ -7,8 +7,8 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 object SparkSecureKafkaDemo extends App {
 
-  if(args.length < 4) {
-    println("Usage: SparkSecureKafkaDemo  <bootstrapservers>  <SecurityProtocol> <topicname> <batchinterval>")
+  if(args.length < 5) {
+    println("Usage: SparkSecureKafkaDemo  <bootstrapservers>  <SecurityProtocol> <topicname> <batchinterval> <consumergroupname>")
 
   } else {
     val conf = new SparkConf().setAppName("SparkSecureKafkaDemo")
@@ -22,7 +22,7 @@ object SparkSecureKafkaDemo extends App {
       "bootstrap.servers" -> args(0),
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer],
-      "group.id" -> "SparkSecureKafkaDemoGroup",
+      "group.id" -> args(4),
       "auto.offset.reset" -> "latest",
       "enable.auto.commit" -> (false: java.lang.Boolean),
       CommonClientConfigs.SECURITY_PROTOCOL_CONFIG -> args(1)
