@@ -91,24 +91,14 @@ object SparkStreaming16CheckPointDemo {
       //Try your processing here
       stream.foreachRDD({ rdd =>
         if (!rdd.isEmpty()) {
-          val messages = rdd.map { consumerRecord => consumerRecord.value }.collect()
+          val messages = rdd.map { consumerRecord => consumerRecord.value.toDouble }.map(_ /2).collect()
 
-          if (messages.exists(_ == "false")) {
-            // set testingflag if message has the value 'true'
-            testingflag = 20
-            xrefflag.setFlag(20)
-            xrefflag.setXrefloaded(20)
-            xrefflag.setNonTransientFlag(20)
-          }
-          println("***************testingflag******************" + testingflag)
-          println("***************xrefflag.getFlag******************" + xrefflag.getFlag())
-          println("***************xrefflag.getXrefloaded******************" + xrefflag.getXrefloaded())
-          println("***************xrefflag.getNonTransientFlag******************" + xrefflag.getNonTransientFlag())
+          println("Received " + messages.length + "messages")
         }
       })
 
       //after data processing checkpoint the stream
-      ssc.checkpoint(checkpointDir)
+     // ssc.checkpoint(checkpointDir)
 
       ssc
     }

@@ -35,16 +35,25 @@
   </properties>
 
   <dependencies>
-    <dependency>
+ <!--   <dependency>
       <groupId>com.hortonworks</groupId>
       <artifactId>spark-kafka-0-10-connector_2.10</artifactId>
       <version>1.0.1</version>
-    </dependency>
-    <dependency>
+    </dependency>-->
+  <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-streaming_${scala.binary.version}</artifactId>
       <version>${spark.version}</version>
       <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.hortonworks</groupId>
+      <artifactId>spark-kafka-0-10-connector_2.10</artifactId>
+      <version>1.0.1 </version>
+      <scope>system</scope>
+      <systemPath>/Users/vkc/tempwork/apache/skc/external/kafka-0-10-assembly/target/spark-kafka-0-10-connector-assembly_2.10-1.0.1.jar</systemPath>
+
     </dependency>
 
     <dependency>
@@ -58,7 +67,7 @@
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
     <plugins>
-      <!-- <plugin>
+       <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-assembly-plugin</artifactId>
          <configuration>
@@ -74,7 +83,7 @@
              </goals>
            </execution>
          </executions>
-       </plugin>-->
+       </plugin>
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
