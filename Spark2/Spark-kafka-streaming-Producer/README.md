@@ -4,6 +4,7 @@
 sourcetopic And  desttopic
 
 2) mvn clean package
+
 3) Copy the application jar and spark-streaming-kafka-0-10_2.11-2.3.0.jar into cluster node ,
  Run following command from binary folder (please provide kafka server url:port, source topicname destination topicname, batch interval in seconds)
 
