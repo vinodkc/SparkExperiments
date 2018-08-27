@@ -1,3 +1,5 @@
+Spark-kafka-python-streaming
+-----------------------------
 This demo is created for pyspark console, same can be used in spark-submit too
 
 1) Create a topic 
