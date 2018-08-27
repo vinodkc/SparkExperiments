@@ -11,8 +11,10 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 object SparkStreamingCheckPointDemo  {
 
   var testingflag = false
-
   var testingflag2 = true
+  var testingInt = 10
+
+
 
 
   def main(args: Array[String]): Unit = {
@@ -35,8 +37,7 @@ object SparkStreamingCheckPointDemo  {
         "value.deserializer" -> classOf[StringDeserializer],
         "group.id" -> "SparkStreamingCheckPointDemoGroup",
         "auto.offset.reset" -> "latest",
-        "enable.auto.commit" -> (false: java.lang.Boolean),
-        CommonClientConfigs.SECURITY_PROTOCOL_CONFIG -> "PLAINTEXTSASL"
+        "enable.auto.commit" -> (false: java.lang.Boolean)
       )
       val topics = args(1)
       val batchInterval = Integer.parseInt(args(2))
@@ -45,6 +46,7 @@ object SparkStreamingCheckPointDemo  {
 
       println("In main testingflag"+ testingflag)
       println("In Main  testingflag2"+ testingflag2)
+      println("In Main  testingInt"+ testingInt)
       val streamingContext = StreamingContext.getOrCreate(checkpointDir,
         createStreamingContext(kafkaParams, topics, batchInterval, checkpointDir))
 
@@ -80,10 +82,13 @@ object SparkStreamingCheckPointDemo  {
         if(messages.exists(_ == "true")) {
           testingflag = true
           testingflag2 = false
+          testingInt = 20;
+
         }
         messages.foreach(print(_))
         println("***************testingflag******************"+ testingflag)
         println("***************testingflag2******************"+ testingflag2)
+        println("***************testingInt******************"+ testingInt)
       }
     })
 

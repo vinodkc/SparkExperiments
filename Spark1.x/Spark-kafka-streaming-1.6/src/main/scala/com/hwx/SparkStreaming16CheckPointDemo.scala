@@ -30,24 +30,7 @@ import scala.collection.mutable
 
 object SparkStreaming16CheckPointDemo {
 
-  class XrefFlagInner extends Serializable {
 
-    @transient private var flag = 10 //date
-    @transient private var xrefloaded = 10 // static data
-    private var nonTransientFlag = 10
-
-    def getFlag(): Int = flag
-
-    def setFlag(value: Int): Unit = flag = value
-
-    def getXrefloaded(): Int = xrefloaded
-
-    def setXrefloaded(value: Int): Unit = xrefloaded = value
-
-    def getNonTransientFlag(): Int = nonTransientFlag
-
-    def setNonTransientFlag(value: Int): Unit = nonTransientFlag = value
-  }
 
 
   def main(args: Array[String]): Unit = {
@@ -56,11 +39,7 @@ object SparkStreaming16CheckPointDemo {
       System.exit(-1)
     }
 
-    var testingflag = 10
-    val xrefflag = new XrefFlagInner
-    xrefflag.setFlag(10)
-    xrefflag.setXrefloaded(10)
-    xrefflag.setNonTransientFlag(10)
+
 
 
     val kafkaParams = new mutable.HashMap[String, Object]()
@@ -68,6 +47,7 @@ object SparkStreaming16CheckPointDemo {
     kafkaParams.put(ConsumerConfig.GROUP_ID_CONFIG, "SparkStreaming16CheckPointDemoGroup")
     kafkaParams.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer])
     kafkaParams.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer])
+
 
 
 
@@ -98,7 +78,7 @@ object SparkStreaming16CheckPointDemo {
       })
 
       //after data processing checkpoint the stream
-     // ssc.checkpoint(checkpointDir)
+      ssc.checkpoint(checkpointDir)
 
       ssc
     }
