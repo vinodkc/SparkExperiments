@@ -3,7 +3,9 @@ Spark-kafka-python-streaming
 This demo is created for pyspark console, same can be used in spark-submit too
 
 1) Create a topic 
+```
 ./kafka-topics.sh --create --zookeeper c220-node3.squadron-labs.com:2181 --replication-factor 2 --partitions 3 --topic sourcetopic
+```
 
 2) start pyspark
 ```
