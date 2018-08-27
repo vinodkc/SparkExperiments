@@ -1,5 +1,5 @@
-Spark-kafka-python-streaming
------------------------------
+# Spark-kafka-python-streaming
+
 This demo is created for pyspark console, same can be used in spark-submit too
 
 1) Create a topic 
@@ -12,7 +12,7 @@ This demo is created for pyspark console, same can be used in spark-submit too
 ./bin/pyspark  --packages  org.apache.spark:spark-streaming-kafka-0-8_2.11:2.3.1
 ```
 3) Paste below code on pyspark shell
-```
+```python
 from pyspark.streaming.kafka import KafkaUtils
 from pyspark.streaming import StreamingContext
 ssc = StreamingContext(sc,5)
