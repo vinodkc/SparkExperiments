@@ -8,7 +8,7 @@
 3) Copy the application jar and spark-streaming-kafka-0-10_2.11-2.3.0.jar into cluster node ,
  Run following command from binary folder (please provide kafka server url:port, source topicname , batch interval in seconds)
 ```
-/usr/hdp/current/spark2-client/bin/spark-submit --master yarn --class com.vkc.StreamDataProcessor  --jars /usr/hdp/current/kafka-broker/libs/kafka-clients-1.0.0.2.6.5.0-292.jar,./spark-streaming-kafka-0-10_2.11-2.3.0.jar ./Spark-Kafka-Streaming-HDFS-Sink-1.0.jar  c220-node4.squadron-labs.com:6667 test100  5
+/usr/hdp/current/spark2-client/bin/spark-submit --master yarn --class com.vkc.StreamDataProcessor2  --jars /usr/hdp/current/kafka-broker/libs/kafka-clients-1.0.0.2.6.5.0-292.jar,./spark-streaming-kafka-0-10_2.11-2.3.0.jar ./Spark-Kafka-Streaming-HDFS-Sink-1.0.jar  c220-node4.squadron-labs.com:6667 test100  5
 ```
 4) Produce some data to source topic
 ```
