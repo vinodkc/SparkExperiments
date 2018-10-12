@@ -25,11 +25,7 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 import scala.collection.mutable
 
-
 object SparkSecureKafkaStreaming {
-
-
-
 
   def main(args: Array[String]): Unit = {
     if (args.length < 4) {
@@ -41,16 +37,12 @@ object SparkSecureKafkaStreaming {
     val batchInterval = Integer.parseInt(args(2))
     val protocol = args(3)
 
-
-
-
     val kafkaParams = new mutable.HashMap[String, Object]()
     kafkaParams.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, args(0))
     kafkaParams.put(ConsumerConfig.GROUP_ID_CONFIG, "SparkStreaming16CheckPointDemoGroup")
     kafkaParams.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer])
     kafkaParams.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, classOf[StringDeserializer])
     kafkaParams.put("security.protocol", protocol)
-
 
   val conf = new SparkConf().setAppName("SparkSecureKafkaStreaming")
 
