@@ -1,6 +1,7 @@
 # SparkKafkaHBaseDemo
 
 1) Create HBase table
+
 create 'sensor', {NAME=>'data'}, {NAME=>'alert'}, {NAME=>'stats'}
 
 2) In Ranger - HBase policy give access to 'kafkahbase-sparkuser' user
@@ -13,6 +14,7 @@ Note: Spark and Kafka user should be same
 ./kafka-topics.sh --create --zookeeper c320-node2.squadron-labs.com:2181 --replication-factor 2 --partitions 3 --topic sensordata
 
 4) Create this script file
+
 cat ./runProducer.sh
 #!/bin/bash
 for (( ; ; ))
@@ -21,6 +23,7 @@ do
    cat sensordatalite.csv | /usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list c320-node3.squadron-labs.com:6667  --topic sensordata --security-protocol SASL_PLAINTEXT
    sleep 20
 done
+
 
 
 5) Same Data file
