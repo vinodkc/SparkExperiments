@@ -47,7 +47,20 @@ COHUTTA,3/10/14,1:13,10.02,1.739,886,1.24,86,1.79
 ```
 ./runProducer.sh
 ```
-7) Run in another terminal
+7) In another terminal
+
+7.1) Copy hbase-site.xml to /etc/spark/conf/  or 
+```
+ln -s /etc/hbase/conf/hbase-site.xml /etc/spark2/conf/hbase-site.xml
+```
+
+7.2) In /etc/spark/conf/spark-env.sh, add the following: 
+
+```
+export SPARK_CLASSPATH=/usr/hdp/current/hbase-client/lib/hbase-common.jar:/usr/hdp/current/hbase-client/lib/hbase-client.jar:/usr/hdp/current/hbase-client/lib/hbase-server.jar:/usr/hdp/current/hbase-client/lib/hbase-protocol.jar:/usr/hdp/current/hbase-client/lib/guava-12.0.1.jar:/usr/hdp/current/hbase-client/lib/htrace-core-3.1.0-incubating.jar 
+```
+
+7.3) Run
 
 ```/usr/hdp/current/spark2-client/bin/spark-submit  --master yarn --deploy-mode cluster  --keytab ./kafkahbase-sparkuser.keytab --principal kafkahbase-user@HWX.COM  --driver-memory 512m --executor-memory 512m --conf spark.hadoop.fs.hdfs.impl.disable.cache=true --conf mapreduce.job.complete.cancel.delegation.tokens=false --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_user_jaas.conf" --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_user_jaas.conf"  --jars /usr/hdp/current/kafka-broker/libs/kafka-clients-1.0.0.2.6.5.0-292.jar,./spark-streaming-kafka-0-10_2.11-2.3.0.jar,/usr/hdp/current/hbase-client/lib/hbase-client.jar,/usr/hdp/current/hbase-client/lib/hbase-common.jar,/usr/hdp/current/hbase-client/lib/hbase-server.jar,/usr/hdp/current/hbase-client/lib/guava-12.0.1.jar,/usr/hdp/current/hbase-client/lib/hbase-protocol.jar,/usr/hdp/current/hbase-client/lib/htrace-core-3.1.0-incubating.jar --files ./kafkahbase-user.keytab,./kafka_user_jaas.conf  --class com.hwx.SparkKafkaHBaseDemo2 ./SparkKafkaHBaseDemo-1.0.jar  c320-node2.squadron-labs.com:6667 SASL_PLAINTEXT sensordata 30  SparkKafkaHBaseDemo2 sensor```
 
