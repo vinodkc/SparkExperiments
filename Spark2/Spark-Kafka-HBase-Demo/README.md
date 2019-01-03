@@ -1,18 +1,18 @@
 # SparkKafkaHBaseDemo
 
 1) Create HBase table
-
+```
 create 'sensor', {NAME=>'data'}, {NAME=>'alert'}, {NAME=>'stats'}
-
+```
 2) In Ranger - HBase policy give access to 'kafkahbase-sparkuser' user
 
 
 3) Create a topic and give access to user 'kafkahbase-user'
 Note: Spark and Kafka user should be same
 
-
+```
 ./kafka-topics.sh --create --zookeeper c320-node2.squadron-labs.com:2181 --replication-factor 2 --partitions 3 --topic sensordata
-
+```
 4) Create this script file
 
 cat ./runProducer.sh
