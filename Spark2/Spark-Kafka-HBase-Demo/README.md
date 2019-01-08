@@ -28,7 +28,7 @@ done
 ```
 
 
-5) Same Data file
+5) Sample Data file
 
 cat sensordatalite.csv
 ```
@@ -54,7 +54,7 @@ COHUTTA,3/10/14,1:13,10.02,1.739,886,1.24,86,1.79
 ln -s /etc/hbase/conf/hbase-site.xml /etc/spark2/conf/hbase-site.xml
 ```
 
-7.2) In /etc/spark/conf/spark-env.sh, add the following: 
+7.2) In /etc/spark2/conf/spark-env.sh, add the following:
 
 ```
 export SPARK_CLASSPATH=/usr/hdp/current/hbase-client/lib/hbase-common.jar:/usr/hdp/current/hbase-client/lib/hbase-client.jar:/usr/hdp/current/hbase-client/lib/hbase-server.jar:/usr/hdp/current/hbase-client/lib/hbase-protocol.jar:/usr/hdp/current/hbase-client/lib/guava-12.0.1.jar:/usr/hdp/current/hbase-client/lib/htrace-core-3.1.0-incubating.jar 
