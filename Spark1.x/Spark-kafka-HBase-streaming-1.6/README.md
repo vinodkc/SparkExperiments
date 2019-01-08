@@ -1,5 +1,6 @@
 # SparkKafkaHBaseDemo
-
+Files 
+```
 [spark@c320-node2 kafkahbaseexample_spark1.6]$ ll
 total 2568
 -rw-r--r-- 1 spark hadoop   16186 Jan  8 09:59 Spark-kafka-HBase-streaming-1.6-1.0.jar
@@ -9,7 +10,7 @@ total 2568
 -rwxr--r-- 1 spark hadoop     241 Jan  8 05:23 runProducer.sh
 -rw-r--r-- 1 spark hadoop     493 Jan  8 05:23 sensordatalite.csv
 -rw-r--r-- 1 spark hadoop  202580 Jan  8 08:28 spark-kafka-0-10-connector_2.10-1.0.1.jar
-
+```
 
 1) Create HBase table
 ```
@@ -74,4 +75,5 @@ export SPARK_CLASSPATH=/usr/hdp/current/hbase-client/lib/hbase-common.jar:/usr/h
 7.3) Run
 
 ```/usr/hdp/current/spark-client/bin/spark-submit --master yarn --keytab ./kafkahbase-sparkuser.keytab --principal kafkahbase-user@HWX.COM  --class com.hwx.SparkSecureKafkaHBaseStreaming --jars /usr/hdp/current/kafka-broker/libs/kafka-clients-1.0.0.2.6.5.0-292.jar,./spark-kafka-0-10-connector_2.10-1.0.1.jar,/usr/hdp/current/hbase-client/lib/hbase-client.jar,/usr/hdp/current/hbase-client/lib/hbase-common.jar,/usr/hdp/current/hbase-client/lib/hbase-server.jar,/usr/hdp/current/hbase-client/lib/guava-12.0.1.jar,/usr/hdp/current/hbase-client/lib/hbase-protocol.jar,/usr/hdp/current/hbase-client/lib/htrace-core-3.1.0-incubating.jar --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_user_jaas.conf" --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_user_jaas.conf" --files ./kafka_user_jaas.conf,./kafkahbase-user.keytab ./Spark-kafka-HBase-streaming-1.6-1.0.jar  c320-node3.squadron-labs.com:6667 sensordata 10 SASL_PLAINTEXT sensor ```
+
 Note: kafkahbase-sparkuser.keytab is a copy of kafkahbase-user.keytab : A hack to pass  --keytab
