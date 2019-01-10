@@ -10,7 +10,7 @@ Yarn Cluster mode
 eg:
 
 cat kafka_client_jaas.conf
-
+```
 KafkaClient {
   com.sun.security.auth.module.Krb5LoginModule required
   doNotPrompt=false
@@ -21,3 +21,4 @@ KafkaClient {
   keyTab="consumer-user.keytab"
   client=true;
 };
+```
