@@ -9,8 +9,16 @@ Run below command
 ```
 /usr/hdp/current/spark2-client/bin/spark-submit --master yarn   --class com.vkc.SparkHiveDemo ./Spark-HiveDemo-1.0.jar <localpathofdatafile>
 ```
-Note: <localpathofdatafile> is optional, if not passed, sample datafile from resource directory (Spark-HiveDemo/src/main/resources/data.csv)will be used
+Eg:
+```
+/usr/hdp/current/spark2-client/bin/spark-submit --master yarn   --class com.vkc.SparkHiveDemo ./Spark-HiveDemo-1.0.jar /tmp/inputdata.csv
+```
+Note: input path localpathofdatafile is optional, if not passed, sample datafile from resource directory (Spark-HiveDemo/src/main/resources/data.csv)will be used
 
+Eg:
+```
+/usr/hdp/current/spark2-client/bin/spark-submit --master yarn   --class com.vkc.SparkHiveDemo ./Spark-HiveDemo-1.0.jar
+```
 
 
 Follow this schema if you wish to create dala file.
