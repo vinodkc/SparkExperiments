@@ -1,4 +1,20 @@
 
+Build the project
+-----------------
+mvn package
+
+Copy the jar file "Spark-HiveDemo-1.0.jar" into spark client node
+
+Run below command
+```
+/usr/hdp/current/spark2-client/bin/spark-submit --master yarn   --class com.vkc.SparkHiveDemo ./Spark-HiveDemo-1.0.jar <localpathofdatafile>
+```
+Note: <localpathofdatafile> is optional, if not passed, sample datafile from resource directory (Spark-HiveDemo/src/main/resources/data.csv)will be used
+
+
+
+Follow this schema if you wish to create dala file.
+
 employee table
 
 ```
@@ -20,4 +36,3 @@ Sample data format
 1204,Kiran,40000,Hr Admin
 1205,Kranthi,30000,Op Admin
 ```
-
