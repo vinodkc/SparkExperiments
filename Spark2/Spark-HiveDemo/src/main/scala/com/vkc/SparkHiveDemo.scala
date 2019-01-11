@@ -25,7 +25,5 @@ object SparkHiveDemo {
 
     println("Count after data load")
 
-    spark.sql("SELECT count(*) FROM employee").show
-
   }
 }
