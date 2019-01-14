@@ -18,4 +18,6 @@ nc -kl 3503
 
 
 Note: In StructureStreamDemo.scala, ensure to change the option 'host' to your  netcat FQDN
+```
 option("host", "c420-node2.squadron-labs.com")
+```
