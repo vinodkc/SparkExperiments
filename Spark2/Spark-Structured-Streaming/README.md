@@ -9,9 +9,9 @@ nc -kl 3503
 ```
 
 3) run spark submit
-
-usr/hdp/current/spark2-client/bin/spark-submit --master yarn --deploy-mode cluster  --class com.hwx.StructureStreamDemo ./StructureStreamDemo-1.0.jar
-
+```
+/usr/hdp/current/spark2-client/bin/spark-submit --master yarn --deploy-mode cluster  --class com.hwx.StructureStreamDemo ./StructureStreamDemo-1.0.jar
+```
 4) Input some date on netcat terminal
 
 5) Output will be saved in /tmp/ss_fileout
