@@ -92,6 +92,12 @@ object SparkStreamingCheckPointDemo  {
       }
     })
 
+    stream.foreachRDD { rdd =>
+    val offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
+
+
+    stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
+  }
     //after data processing checkpoint the stream
     ssc.checkpoint(checkpointDir)
     ssc
