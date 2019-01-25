@@ -21,7 +21,6 @@ KafkaClient {
   principal="consumer-user@VKC.COM"
   useKeyTab=true
   serviceName="kafka"
-  keyTab="consumer-user.keytab"
-  client=true;
+  keyTab="consumer-user.keytab";
 };
 ```
