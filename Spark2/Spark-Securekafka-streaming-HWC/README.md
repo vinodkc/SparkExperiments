@@ -1,4 +1,4 @@
-# Spark-Securekafka- Hive warehouse streaming Example
+# Spark-Securekafka- Hive warehouse connector streaming  Example
 
 1) In hive create a table : messages
 
