@@ -47,7 +47,9 @@ Note: You may see many small files
 
  hdfs dfs -ls -R  /warehouse/tablespace/managed/hive/messages | wc -l
  note down the result
+
  Inhive, run
+
  ALTER TABLE messages CONCATENATE;
 
  hdfs dfs -ls -R  /warehouse/tablespace/managed/hive/messages | wc -l
