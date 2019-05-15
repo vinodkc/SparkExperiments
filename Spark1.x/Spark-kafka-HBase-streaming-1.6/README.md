@@ -1,11 +1,13 @@
 Prerequisites 
 -----------------
 clone : https://github.com/hortonworks-spark/skc
-cd skc
-mvn clean install
 
-then cd Spark-kafka-HBase-streaming-1.6
-mvn clean package
+`cd skc`
+
+`mvn clean install`
+
+then `cd Spark-kafka-HBase-streaming-1.6`
+`mvn clean package`
 
 
 # SparkKafkaHBaseDemo
