@@ -1,4 +1,4 @@
-# Spark-Securekafka- Hive warehouse connector streaming  Example
+# Spark-Securekafka-Structured-streaming  Demo
 
 **Project setup**
 
