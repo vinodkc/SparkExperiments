@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 object SparkHiveDemo {
   def main(args: Array[String]): Unit = {
 
-    val spark = SparkSession.builder().master("local").appName("SparkHiveDemo").enableHiveSupport().getOrCreate()
+    val spark = SparkSession.builder().appName("SparkHiveDemo").enableHiveSupport().getOrCreate()
 
     val fileName = if (args.length > 0) args(0) else getClass().getClassLoader().getResource("data.csv").getPath
 
