@@ -1,3 +1,5 @@
+package com.vkc
+
 import org.apache.kafka.clients.CommonClientConfigs
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.{Seconds, StreamingContext}
@@ -11,9 +13,9 @@ object SparkKafkaStreamTest  extends App{
     val conf = new SparkConf().setAppName("SparkSecureKafkaDemo")
 
     import org.apache.kafka.common.serialization.StringDeserializer
-    import org.apache.spark.streaming.kafka010._
-    import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
     import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
+    import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+    import org.apache.spark.streaming.kafka010._
 
     val kafkaParams = Map[String, Object](
       "bootstrap.servers" -> args(0),
