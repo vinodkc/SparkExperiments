@@ -2,17 +2,21 @@
 
 **Project setup**
 
-1) cd ./SparkExperiments/Spark2/Spark-Securekafka-Structured-streaming
+1) `cd ./SparkExperiments/Spark2/Spark-Securekafka-Structured-streaming`
 
-   mvn package
+   `mvn install`
    
-   copy following jars into a dir in gateway node
-   SparkSecureKafkaStructuredStreaming-Demo-1.0.jar from target dir
+**copy following jars into a dir into gateway node**
    
-   download spark-sql-kafka-0-10_2.11-2.3.1.jar and kafka-clients-0.10.0.1.jar from maven central
+```
+   target/SparkSecureKafkaStructuredStreaming-Demo-1.0.jar
+   target/lib/spark-sql-kafka-0-10_2.11-2.3.2.3.1.4.0-315.jar
+   target/lib/kafka-clients-2.0.0.3.1.4.0-315.jar
+ ```
 
 **Create a topic**
 ```
+cd /usr/hdp/current/kafka-broker/bin/
 ./kafka-topics.sh --create --zookeeper c220-node2.squadron-labs.com:2181 --replication-factor 2 --partitions 3 --topic sensortopic
 ```
 
@@ -20,23 +24,21 @@
 
 ```
 ll
--rw-r--r-- 1 spark hadoop  14490 Jul  9 06:00 SparkSecureKafkaStructuredStreaming-Demo-1.0.jar
--rw-r--r-- 1 spark hadoop 746207 Jul  9 06:30 kafka-clients-0.10.0.1.jar  //Important, you must use version 0.10.0.1 jar
--rw-r--r-- 1 spark hadoop    220 Jul  8 11:34 kafka_client_jaas.conf
--rw-r--r-- 1 spark hadoop 417309 Jul  8 11:13 spark-sql-kafka-0-10_2.11-2.3.1.jar
--r-------- 1 spark hadoop    298 Jul  8 11:29 spark.headless.keytab
+-rw-r--r-- 1 spark hadoop   12107 Feb 11 06:44 SparkSecureKafkaStructuredStreaming-Demo-1.0.jar
+-rw-r--r-- 1 spark hadoop 1894756 Feb 11 06:54 kafka-clients-2.0.0.3.1.4.0-315.jar
+-rw-r--r-- 1 spark hadoop  417361 Feb 11 06:45 spark-sql-kafka-0-10_2.11-2.3.2.3.1.4.0-315.jar
 ```
 
 **Start spark structured streaming application**
 
 ```
-spark-submit --master yarn --deploy-mode cluster   --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --files ./kafka_client_jaas.conf,./spark.headless.keytab  --jars ./spark-sql-kafka-0-10_2.11-2.3.1.jar,./kafka-clients-0.10.0.1.jar --conf spark.sql.shuffle.partitions=3  --class com.vkc.SparkSecureKafkaStructuredStreamingDemo ./SparkSecureKafkaStructuredStreaming-Demo-1.0.jar c220-node2.squadron-labs.com:6667 SASL_PLAINTEXT sourcetopic
+spark-submit --master yarn --deploy-mode client   --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --files ./kafka_client_jaas.conf,./spark.headless.keytab  --jars --jars ./kafka-clients-2.0.0.3.1.4.0-315.jar,./spark-sql-kafka-0-10_2.11-2.3.2.3.1.4.0-315.jar --conf spark.sql.shuffle.partitions=3  --class com.vkc.SparkSecureKafkaStructuredStreamingDemo ./SparkSecureKafkaStructuredStreaming-Demo-1.0.jar c220-node2.squadron-labs.com:6667 SASL_PLAINTEXT sensortopic
 ```
 
 **Start producing some data**
 
 ```
-/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list c220-node2.squadron-labs.com:6667    --topic sourcetopic --producer-property security.protocol=SASL_PLAINTEXT
+/usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list c220-node2.squadron-labs.com:6667    --topic sensortopic --producer-property security.protocol=SASL_PLAINTEXT
 1461756862000,"SID1",500.0
 1461756862000,"SID1",500.0
 1461756862000,"SID1",500.0
