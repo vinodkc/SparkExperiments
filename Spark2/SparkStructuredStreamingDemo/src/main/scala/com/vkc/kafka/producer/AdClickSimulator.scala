@@ -5,7 +5,7 @@ import java.util.Properties
 import com.twitter.bijection.avro.GenericAvroCodecs
 import org.apache.avro.Schema
 import org.apache.avro.generic.GenericData
-import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
 
 object AdClickSimulator {
 
@@ -33,7 +33,7 @@ object AdClickSimulator {
       System.exit(0)
     }
     val numAds = args(0).toInt
-    val brokerList = args(1);
+    val brokerList = args(1)
     val topicImpressions = args(2)
     val numMsgsImpressions = args(3).toInt
     val topicClicks = args(4)
@@ -41,9 +41,39 @@ object AdClickSimulator {
     val avroClicksFile = "./avro/Clicks.avsc"
     val avroImpressionFile = "./avro/Impressions.avsc"
 
+    val props: Properties = new Properties()
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, brokerList)
+    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+      "org.apache.kafka.common.serialization.StringSerializer")
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+      "org.apache.kafka.common.serialization.ByteArraySerializer")
+    props.put(ProducerConfig.ACKS_CONFIG, "all")
+
     val generator = new EventGenerator(numAds)
-    def produceImpressions = produceMessages(brokerList, topicImpressions, numMsgsImpressions, avroImpressionFile, 100, getImpressionRecord, generator)
-    def produceClicks = produceMessages(brokerList, topicClicks, numMsgsClicks, avroClicksFile, 500, getClickRecord, generator)
+
+    val parser = new Schema.Parser
+
+    def produceImpressions = produceMessages(
+      brokerList,
+      topicImpressions,
+      numMsgsImpressions,
+      avroImpressionFile,
+      100,
+      props,
+      getImpressionRecord,
+      generator,
+      parser)
+
+    def produceClicks = produceMessages(
+      brokerList,
+      topicClicks,
+      numMsgsClicks,
+      avroClicksFile,
+      500,
+      props,
+      getClickRecord,
+      generator,
+      parser)
 
     val executor = java.util.concurrent.Executors.newFixedThreadPool(2)
     List(new Runnable {
@@ -61,23 +91,19 @@ object AdClickSimulator {
                               numMsgs: Int,
                               avroFile: String,
                               interval: Int,
+                              props: Properties,
                               getRecord: ((Schema, EventGenerator) => GenericData.Record),
-                              generator: EventGenerator) = {
-    val props: Properties = new Properties()
-    props.put("bootstrap.servers", brokerList)
-    props.put("key.serializer",
-      "org.apache.kafka.common.serialization.StringSerializer")
-    props.put("value.serializer",
-      "org.apache.kafka.common.serialization.ByteArraySerializer")
-    props.put("acks", "all")
-    val parser = new Schema.Parser
+                              generator: EventGenerator,
+                              parser: Schema.Parser) = {
+
+
     val schema = parser.parse(Thread.currentThread.getContextClassLoader.getResourceAsStream(avroFile))
 
     val producer = new KafkaProducer[String, Array[Byte]](props)
     val recordInjection = GenericAvroCodecs.toBinary[GenericData.Record](schema)
 
 
-    Range(1, numMsgs).foreach { x =>
+    Range(1, numMsgs).foreach { _ =>
       Thread.sleep(interval)
       val bytes: Array[Byte] = recordInjection.apply(getRecord(schema, generator))
       producer.send(new ProducerRecord[String, Array[Byte]](topicName, bytes))
