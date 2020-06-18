@@ -1,4 +1,5 @@
 package com.vkc.kafka.producer
+
 import com.vkc.avro.{Clicks, Impressions}
 
 

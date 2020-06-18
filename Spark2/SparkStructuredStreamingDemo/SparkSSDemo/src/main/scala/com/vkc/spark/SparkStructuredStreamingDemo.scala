@@ -1,4 +1,4 @@
-package com.vkc.kafka.producer
+package com.vkc.spark
 
 import java.nio.file.{Files, Paths}
 
@@ -55,8 +55,6 @@ object SparkStructuredStreamingDemo {
             |AND clickTime <= impressionTime + interval 1 minutes""".stripMargin
         )
       )
-     // val df = impressionsStreamDs.join(clickStreamDs, "adId")
-
       val query = joinDs.writeStream.format("console")
       query.start().awaitTermination()
     }
