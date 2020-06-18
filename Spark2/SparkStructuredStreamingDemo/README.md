@@ -19,7 +19,7 @@ java com.vkc.kafka.producer.AdClickSimulator 100 localhost:9092 impressions  300
 
 **Result**
 
-
+```
 20/06/18 15:25:16 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 {"namespace": "com.vkc.avro",
   "type" : "record",
@@ -107,3 +107,4 @@ Batch: 2
 |        AdId-6|2020-06-18 15:25:...|   AdId-6|2020-06-18 15:26:...|
 |        AdId-6|2020-06-18 15:27:...|   AdId-6|2020-06-18 15:27:...|
 +--------------+--------------------+---------+--------------------+
+```
