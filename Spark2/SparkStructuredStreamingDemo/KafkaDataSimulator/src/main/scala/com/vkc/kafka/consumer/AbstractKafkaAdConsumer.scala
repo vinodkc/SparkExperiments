@@ -7,7 +7,7 @@ import java.util.Properties
 import com.twitter.bijection.avro.GenericAvroCodecs
 import org.apache.avro.Schema
 import org.apache.avro.generic.GenericData
-import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer}
+import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecords, KafkaConsumer}
 
 abstract class AbstractKafkaAdConsumer(consumerGroup: String,
                                        bootStrapServers: String,
@@ -42,7 +42,7 @@ abstract class AbstractKafkaAdConsumer(consumerGroup: String,
     val recordInjection = GenericAvroCodecs.toBinary[GenericData.Record](schema)
 
     while (true) {
-      val records = consumer.poll(Duration.ofSeconds(1))
+      val records: ConsumerRecords[String, Array[Byte]] = consumer.poll(Duration.ofSeconds(1))
       records.forEach(record => {
         val genericRecord = recordInjection.invert(record.value).get
         //template method

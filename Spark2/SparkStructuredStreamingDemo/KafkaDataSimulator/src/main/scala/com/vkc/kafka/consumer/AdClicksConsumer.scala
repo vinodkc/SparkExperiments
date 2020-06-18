@@ -1,4 +1,5 @@
 package com.vkc.kafka.consumer
+
 import org.apache.avro.generic.GenericData
 
 class AdClicksConsumer(consumerGroup: String,

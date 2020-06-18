@@ -1,0 +1,13 @@
+{"namespace": "com.vkc.avro",
+  "type" : "record",
+  "name" : "Impressions",
+  "fields" : [
+   {"name": "adId", "type": "string"},
+  {
+    "name" : "impressionTime",
+    "type" : {
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    }
+  }]
+}

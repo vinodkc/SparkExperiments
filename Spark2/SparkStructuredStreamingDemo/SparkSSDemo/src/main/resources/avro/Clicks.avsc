@@ -1,0 +1,13 @@
+{"namespace": "com.vkc.avro",
+  "type" : "record",
+  "name" : "Clicks",
+  "fields" : [
+   {"name": "adId", "type": "string"},
+  {
+    "name" : "clickTime",
+    "type" : {
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    }
+  }]
+}

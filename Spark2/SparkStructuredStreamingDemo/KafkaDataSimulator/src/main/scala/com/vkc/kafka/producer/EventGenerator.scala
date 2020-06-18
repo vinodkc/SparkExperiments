@@ -1,6 +1,6 @@
 package com.vkc.kafka.producer
-
 import com.vkc.avro.{Clicks, Impressions}
+
 
 class EventGenerator(val adCount: Int) {
   private val random = new scala.util.Random
@@ -8,12 +8,12 @@ class EventGenerator(val adCount: Int) {
 
   def getNextImpression: Impressions = {
     val adId = adIds(random.nextInt(adCount))
-    new Impressions(adId,System.currentTimeMillis)
+    new Impressions(adId, System.currentTimeMillis)
   }
 
   def getNextClick: Clicks = {
     val adId = adIds(random.nextInt(adCount))
-    new Clicks(adId,System.currentTimeMillis)
+    new Clicks(adId, System.currentTimeMillis)
   }
 
 }
