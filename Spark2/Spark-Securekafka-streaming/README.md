@@ -42,6 +42,7 @@ Yarn Client mode
 /usr/hdp/current/spark2-client/bin/spark-submit --master yarn --deploy-mode client --keytab ./spark-user1_forSpark.keytab --principal spark-user1@VKC.COM --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf"  --jars /usr/hdp/current/kafka-broker/libs/kafka-clients-*.jar,./spark-streaming-kafka-0-10_2.11-2.3.2.jar  --files ./spark-user1.keytab,./kafka_client_jaas.conf --class com.hwx.SparkSecureKafkaDemo ./SparkSecureKafkaDemo-1.0.jar  ip:6667 SASL_PLAINTEXT sensortopic 5 sensorGroup
 ```
 you will see the result on console
+
 Yarn Cluster mode
 ```
 /usr/hdp/current/spark2-client/bin/spark-submit --master yarn --deploy-mode cluster --keytab ./spark-user1_forSpark.keytab --principal spark-user1@VKC.COM --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf"  --jars /usr/hdp/current/kafka-broker/libs/kafka-clients-*.jar,./spark-streaming-kafka-0-10_2.11-2.3.2.jar  --files ./spark-user1.keytab,./kafka_client_jaas.conf --class com.hwx.SparkSecureKafkaDemo ./SparkSecureKafkaDemo-1.0.jar  ip:6667 SASL_PLAINTEXT sensortopic 5 sensorGroup
