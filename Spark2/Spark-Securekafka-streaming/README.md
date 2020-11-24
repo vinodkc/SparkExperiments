@@ -50,9 +50,6 @@ you will see the result on application log
 
 # SASL_SSL DEMO
 
-```
-Usage: SparkSecureSSLKafkaDemo  <bootstrapservers>  <SecurityProtocol> <topicname> <batchinterval> <consumergroupname> <ssl truststore filename> <ssl truststore password>
-```
 4.2) Spark - Kafka SASL_PLAINTEXT DEMO
 
 
