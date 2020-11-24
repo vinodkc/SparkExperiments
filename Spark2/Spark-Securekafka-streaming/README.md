@@ -27,7 +27,9 @@
 ```
 
 4) From another host/terminal, login as `spark-user1` and try 4.1  or 4.2
-#SASL_PLAINTEXT DEMO
+
+# SASL_PLAINTEXT DEMO
+
 4.1) Spark - Kafka SASL_PLAINTEXT DEMO
 
 ```
@@ -46,7 +48,7 @@ Yarn Cluster mode
 ```
 you will see the result on application log
 
-#SASL_SSL DEMO
+# SASL_SSL DEMO
 
 ```
 Usage: SparkSecureSSLKafkaDemo  <bootstrapservers>  <SecurityProtocol> <topicname> <batchinterval> <consumergroupname> <ssl truststore filename> <ssl truststore password>
