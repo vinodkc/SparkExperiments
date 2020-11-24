@@ -93,4 +93,28 @@ Directory listing
    -rw------- 1 spark-user1 root      610 Nov 24 06:35 spark-user1.keytab
    -rw------- 1 spark-user1 root      610 Nov 24 06:35 spark-user1_forSpark.keytab
 ```
+###Annexure*
+
+SASL_SSL Kafka consle client demo 
+```
+cat home/spark-user1/spark-kafka/client-ssl.properties
+group.id=sensorGroup
+security.protocol=SASL_SSL
+ssl.truststore.location=client.truststore.jks
+ssl.truststore.password=Hadoop@123
+```
+
+
+SASL_SSL kafka consumber demo
+
+```
+./kafka-console-consumer.sh --bootstrap-server ip:6668   --topic sensortopic --consumer.config ./client-ssl.properties --from-beginning
+```
+
+SASL_SSL kafka producer demo
+
+```
+./kafka-console-producer.sh --broker-list ip:6668   --topic sensortopic --producer.config ./client-ssl.properties
+```
+
 
