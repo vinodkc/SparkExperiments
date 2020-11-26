@@ -3,7 +3,7 @@ package com.vkc
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.window
 
-case class Sensor(time:java.sql.Timestamp, sensorId:String,value:Double)
+
 
 object SparkSecureKafkaStructuredStreamingDemo {
 
@@ -26,7 +26,6 @@ object SparkSecureKafkaStructuredStreamingDemo {
         val columns = value.split(",")
         Sensor(new java.sql.Timestamp(columns(0).toLong), columns(1), columns(2).toDouble)
       }).groupBy(window($"time", "10 seconds"), $"sensorId").avg("value")
-
 
       val query = sensorDs.writeStream.format("console").option("truncate", "false").outputMode(org.apache.spark.sql.streaming.OutputMode.Complete())
       query.start().awaitTermination()

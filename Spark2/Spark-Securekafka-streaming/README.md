@@ -13,12 +13,12 @@
  a) Give producer acl
  
  ```
- ./kafka-acls.sh --authorizer-properties zookeeper.connect=ip:2181    --add --allow-principal User:spark-user1    --producer --topic sensortopic
+ ./kafka-acls.sh --authorizer-properties zookeeper.connect=ip:2181  --add --allow-principal User:spark-user1  --producer --topic sensortopic
 ```
 
  b) Give consumer acl 
  ```
- ./kafka-acls.sh --authorizer-properties zookeeper.connect=ip:2181  --add --allow-principal User:spark-user1 --consumer --topic sensortopic --group sensorGroup
+./kafka-acls.sh --authorizer-properties zookeeper.connect=ip:2181  --add --allow-principal User:spark-user1 --consumer --topic sensortopic --group sensorGroup
 ```
 
 3) From another host/terminal, login as `spark-user1` and produce data  

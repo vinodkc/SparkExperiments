@@ -11,7 +11,7 @@ object SparkSecureSSLKafkaDemo extends App {
     println("Usage: SparkSecureSSLKafkaDemo  <bootstrapservers>  <SecurityProtocol> <topicname> <batchinterval> <consumergroupname> <ssl truststore filename> <ssl truststore password>")
 
   } else {
-    val conf = new SparkConf().setAppName("SparkSecureKafkaDemo")
+    val conf = new SparkConf().setAppName("SparkSecureSSLKafkaDemo")
 
     import org.apache.kafka.common.serialization.StringDeserializer
     import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
