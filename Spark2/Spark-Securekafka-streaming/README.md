@@ -28,6 +28,14 @@
 
 4) From another host/terminal, login as `spark-user1` and try 4.1  or 4.2
 
+# Build SparkSecureKafkaDemo-1.0.jar
+Clone the git repo `SparkExperiments` to local machine
+```
+cd ./SparkExperiments/Spark2/Spark-Securekafka-streaming
+mvn package 
+```
+copy  `SparkSecureKafkaDemo-1.0.jar` from  `./SparkExperiments/Spark2/Spark-Securekafka-streaming/target/SparkSecureKafkaDemo-1.0.jar` to gateway node
+
 # SASL_PLAINTEXT DEMO
 
 4.1) Spark - Kafka SASL_PLAINTEXT DEMO
