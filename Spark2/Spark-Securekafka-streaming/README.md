@@ -1,5 +1,10 @@
 # Spark-Securekafka-streaming
 
+
+1) Secure Kafka 
+
+ [Refer this doc](https://gist.github.com/vinodkc/b99ba4ddc159b53c6b2c89f1d8125573)
+
 1.1) Kinit as Kafka user 
 
 1.2) create kafka topic 
