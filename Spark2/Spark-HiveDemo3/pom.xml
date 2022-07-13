@@ -6,7 +6,7 @@
   <inceptionYear>2019</inceptionYear>
   <properties>
     <scala.version>2.11.8</scala.version>
-    <spark.version>2.3.0.2.6.5.0-292</spark.version>
+    <spark.version>2.4.4</spark.version>
     <spark.scope>provided</spark.scope>
   </properties>
 
