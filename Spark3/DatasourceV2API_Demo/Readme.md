@@ -5,7 +5,8 @@
  val simpleDf = spark.read.format("com.vkc.spark.sources.datasourcev2.inmemory_withpartition").load.show
  
  ```
-val simpleDf = spark.read.format("com.vkc.spark.sources.datasourcev2.inmemory_withpartition").load.show
+val simpleDf = spark.read.format("com.vkc.spark.sources.datasourcev2.inmemory_withpartition").load
+simpleDf.show
 ```
  ```
      +----+----+----+
