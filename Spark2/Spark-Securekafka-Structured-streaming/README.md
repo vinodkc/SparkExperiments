@@ -130,7 +130,7 @@ Yarn Cluster mode
 /usr/hdp/current/spark2-client/bin/spark-submit --master yarn --deploy-mode cluster --keytab ./spark-user1_forSpark.keytab --principal spark-user1@VKC.COM --conf spark.executor.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --conf spark.driver.extraJavaOptions="-Djava.security.auth.login.config=kafka_client_jaas.conf" --files ./client.truststore.jks,./kafka_client_jaas.conf,./spark-user1.keytab --jars ./kafka-clients-2.0.0.3.1.4.0-315.jar,./spark-sql-kafka-0-10_2.11-2.3.2.3.1.4.0-315.jar --conf spark.sql.shuffle.partitions=12  --class com.vkc.SparkSecureSSLKafkaStructuredStreamingDemo ./SparkSecureKafkaStructuredStreaming-Demo-1.0.jar ip:6668 SASL_SSL sensortopic client.truststore.jks Hadoop@123
 ```
 
-Note: spark-user1_forSpark.keytab is a copy of spark-user1.keytab ; A hack to support both --keytab & --files ./consumer-user.keytab
+Note: spark-user1_forSpark.keytab is a copy of spark-user1.keytab ; A hack to support both --keytab & --files  
 
 cat kafka_client_jaas.conf
 
