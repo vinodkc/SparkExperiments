@@ -24,3 +24,6 @@ simpleDf.show
      |  10|   J|  10|
      +----+----+----+
 ```
+
+Simlulatting save to console :)
+simpleDf.write.format("com.vkc.spark.sources.datasourcev2.inmemory_read_write").mode("Append").save()
